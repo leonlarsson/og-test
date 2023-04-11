@@ -25,7 +25,7 @@ export const GET = async (request: Request, { params: { username } }: { params: 
                         fontWeight: 600
                     }}
                 >
-                    <img src={data.avatar} />
+                    <img src={data.avatar} width={150} height={150} />
                     <div style={{ fontSize: 50 }}>{data.userName}</div>
                     <div style={{ marginTop: 10, display: "flex", color: "green" }}>{data.kills.toLocaleString("en")} kills</div>
                     <div style={{ display: "flex", color: "red" }}>{data.deaths.toLocaleString("en")} deaths</div>
