@@ -10,6 +10,8 @@ export const GET = async (request: Request, { params: { name } }: { params: { na
         const res = await fetch(`https://api.gametools.network/bf2042/stats/?format_values=false&name=${encodeURIComponent(name)}&platform=pc`);
         const data = await res.json();
 
+        console.log(data.userName, data.kills);
+
         return new ImageResponse(
             (
                 <div
