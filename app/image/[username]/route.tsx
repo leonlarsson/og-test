@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/server";
 
-export default async (request: Request, { params: { name } }: { params: { name: string } }) => {
+export const GET = async (request: Request, { params: { name } }: { params: { name: string } }) => {
 
     try {
         const res = await fetch(`https://api.gametools.network/bf2042/stats/?format_values=false&name=${encodeURIComponent(name)}&platform=pc`);

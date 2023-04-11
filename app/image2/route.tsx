@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/server";
 
-export default async () => {
+export const GET = async () => {
 
     try {
         const res = await fetch("https://api.battlefieldstats.com");
