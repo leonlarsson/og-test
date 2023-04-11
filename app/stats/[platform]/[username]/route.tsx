@@ -4,9 +4,11 @@ export const config = {
     runtime: "edge"
 }
 
-export const GET = async (request: Request, { params: { username } }: { params: { username: string } }) => {
+export const GET = async (request: Request, { params: { platform, username } }: { params: { platform: string, username: string } }) => {
 
-    const res = await fetch(`https://api.gametools.network/bf2042/stats/?format_values=false&name=${encodeURIComponent(username)}&platform=pc`);
+    if (!["pc", "ps4", "xboxone", "ps5", "xboxseries"].includes(platform.toLocaleLowerCase())) return error("Platform must be one of pc, ps4, xboxone, ps5, xboxseries");
+
+    const res = await fetch(`https://api.gametools.network/bf2042/stats/?format_values=false&platform=${platform}&name=${encodeURIComponent(username)}`);
     const data = await res.json();
 
     if (res.ok) {
@@ -38,29 +40,33 @@ export const GET = async (request: Request, { params: { username } }: { params: 
             }
         );
     } else {
-        return new ImageResponse(
-            (
-                <div
-                    style={{
-                        height: "100%",
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        backgroundColor: "#fff",
-                        fontSize: 32,
-                        fontWeight: 600
-                    }}
-                >
-                    <div style={{ color: "red" }}>Not found</div>
-                </div>
-
-            ),
-            {
-                width: 1200,
-                height: 600
-            }
-        );
+        return error("Could not find.");
     };
+}
+
+const error = (message: string) => {
+    return new ImageResponse(
+        (
+            <div
+                style={{
+                    height: "100%",
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#fff",
+                    fontSize: 32,
+                    fontWeight: 600
+                }}
+            >
+                <div style={{ color: "red" }}>{message}</div>
+            </div>
+
+        ),
+        {
+            width: 1200,
+            height: 600
+        }
+    );
 }
