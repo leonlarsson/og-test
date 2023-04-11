@@ -4,10 +4,10 @@ export const config = {
     runtime: "edge"
 }
 
-export const GET = async (request: Request, { params: { name } }: { params: { name: string } }) => {
+export const GET = async (request: Request, { params: { username } }: { params: { username: string } }) => {
 
     try {
-        const res = await fetch(`https://api.gametools.network/bf2042/stats/?format_values=false&name=${encodeURIComponent(name)}&platform=pc`);
+        const res = await fetch(`https://api.gametools.network/bf2042/stats/?format_values=false&name=${encodeURIComponent(username)}&platform=pc`);
         const data = await res.json();
 
         console.log(data.userName, data.kills);
