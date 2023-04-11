@@ -1,5 +1,9 @@
 import { ImageResponse } from "next/server";
 
+export const config = {
+    runtime: "edge"
+}
+
 export const GET = async (request: Request, { params: { name } }: { params: { name: string } }) => {
 
     try {
