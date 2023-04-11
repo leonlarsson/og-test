@@ -6,12 +6,10 @@ export const config = {
 
 export const GET = async (request: Request, { params: { username } }: { params: { username: string } }) => {
 
-    try {
-        const res = await fetch(`https://api.gametools.network/bf2042/stats/?format_values=false&name=${encodeURIComponent(username)}&platform=pc`);
-        const data = await res.json();
+    const res = await fetch(`https://api.gametools.network/bf2042/stats/?format_values=false&name=${encodeURIComponent(username)}&platform=pc`);
+    const data = await res.json();
 
-        console.log(data.userName, data.kills);
-
+    if (res.ok) {
         return new ImageResponse(
             (
                 <div
@@ -27,8 +25,10 @@ export const GET = async (request: Request, { params: { username } }: { params: 
                         fontWeight: 600
                     }}
                 >
-                    <div>{data.userName}</div>
-                    <div style={{ marginTop: 10 }}>{data.kills} kills</div>
+                    <img src={data.avatar} />
+                    <div style={{ fontSize: 50 }}>{data.userName}</div>
+                    <div style={{ marginTop: 10, display: "flex", color: "green" }}>{data.kills.toLocaleString("en")} kills</div>
+                    <div style={{ display: "flex", color: "red" }}>{data.deaths.toLocaleString("en")} deaths</div>
                 </div>
 
             ),
@@ -37,7 +37,7 @@ export const GET = async (request: Request, { params: { username } }: { params: 
                 height: 600
             }
         );
-    } catch (error) {
+    } else {
         return new ImageResponse(
             (
                 <div
@@ -53,7 +53,7 @@ export const GET = async (request: Request, { params: { username } }: { params: 
                         fontWeight: 600
                     }}
                 >
-                    <div style={{ color: "red" }}>Error fetching</div>
+                    <div style={{ color: "red" }}>Not found</div>
                 </div>
 
             ),
@@ -62,5 +62,5 @@ export const GET = async (request: Request, { params: { username } }: { params: 
                 height: 600
             }
         );
-    }
-};
+    };
+}
