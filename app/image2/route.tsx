@@ -10,7 +10,7 @@ export const GET = async () => {
         const res = await fetch("https://api.battlefieldstats.com");
         const data = await res.json();
 
-        console.log(data);
+        console.log(data.totalGuilds, data.totalChannels);
 
         return new ImageResponse(
             (
