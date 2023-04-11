@@ -4,7 +4,7 @@ export const config = {
     runtime: "edge"
 }
 
-export const GET = ({ params }: { params: { title: string } }) => {
+export const GET = (request: Request, { params }: { params: { title: string } }) => {
 
     return new ImageResponse(
         (
@@ -22,9 +22,8 @@ export const GET = ({ params }: { params: { title: string } }) => {
                 }}
             >
                 <div>Hello.</div>
-                <div style={{ marginTop: 10 }}>You are on /works-too/{params.title}</div>
+                <div style={{ display: "flex" }}><span>You are on /works-too/{params.title}</span></div>
             </div>
-
         ),
         {
             width: 1200,
