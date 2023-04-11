@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/server";
 
+export const size = { width: 1200, height: 600 };
+
 export default async () => {
 
     let test = "test";
