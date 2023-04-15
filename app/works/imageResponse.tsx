@@ -25,14 +25,14 @@ export default async () => {
                     width: "100%",
                     display: "flex",
                     flexDirection: "column",
-                    backgroundColor: "#fff",
+                    background: "linear-gradient(139deg, rgba(250,250,250,1) 0%, rgba(237,237,237,1) 47%, rgba(247,247,247,1) 100%)",
                     fontSize: 32,
                     fontWeight: 400,
                     padding: 20
                 }}
             >
 
-                <div style={{ fontWeight: 700, fontSize: 50, display: "flex", whiteSpace: "pre" }}>Battledield Stats Discord Bot <span style={{ fontSize: 30, fontWeight: 400, marginLeft: 5, marginTop: 18 }}>by Mozzy</span></div>
+                <div style={{ fontWeight: 700, fontSize: 50, display: "flex", whiteSpace: "pre" }}>Battlefield Stats Discord Bot <span style={{ fontSize: 30, fontWeight: 400, marginLeft: 5, marginTop: 18 }}>by Mozzy</span></div>
                 <div style={{ backgroundColor: "black", height: 2, width: 1180, alignSelf: "center" }} />
 
                 <div style={{ display: "flex", fontWeight: 700, marginTop: 10 }}>In {baseStats.totalGuilds.toLocaleString("en")} servers, with {baseStats.totalMembers.toLocaleString("en")} members, and {baseStats.totalStatsSent.total.toLocaleString("en")} stats sent.</div>
