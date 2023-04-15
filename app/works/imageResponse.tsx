@@ -1,11 +1,11 @@
 import { ImageResponse } from "next/server";
 
 const regularFont = fetch(
-    new URL("/public/fonts/Inter-Regular.woff", import.meta.url)
+    new URL("/public/fonts/Inter-Regular.ttf", import.meta.url)
 ).then(res => res.arrayBuffer());
 
 const boldFont = fetch(
-    new URL("/public/fonts/Inter-Bold.woff", import.meta.url)
+    new URL("/public/fonts/Inter-Bold.ttf", import.meta.url)
 ).then(res => res.arrayBuffer());
 
 export default async () => {
