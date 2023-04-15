@@ -4,4 +4,4 @@ export const config = {
     runtime: "edge"
 };
 
-export const GET = () => imageResponse();
+export default () => imageResponse();
