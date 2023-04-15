@@ -8,15 +8,10 @@ const boldFont = fetch(
     new URL("/public/fonts/Inter-Bold.ttf", import.meta.url)
 ).then(res => res.arrayBuffer());
 
-const blackFont = fetch(
-    new URL("/public/fonts/Inter-Black.ttf", import.meta.url)
-).then(res => res.arrayBuffer());
-
 export default async () => {
-    const [regularFontData, boldFontData, blackFontData] = await Promise.all([
+    const [regularFontData, boldFontData] = await Promise.all([
         regularFont,
-        boldFont,
-        blackFont
+        boldFont
     ]);
 
     const res = await fetch("https://api.battlefieldstats.com", { next: { revalidate: 60 } });
@@ -37,7 +32,7 @@ export default async () => {
                 }}
             >
 
-                <div style={{ fontWeight: 900, fontSize: 50, display: "flex", whiteSpace: "pre" }}>Battledield Stats Discord Bot <span style={{ fontSize: 30, fontWeight: 400, marginLeft: 5, marginTop: 18 }}>by Mozzy</span></div>
+                <div style={{ fontWeight: 700, fontSize: 50, display: "flex", whiteSpace: "pre" }}>Battledield Stats Discord Bot <span style={{ fontSize: 30, fontWeight: 400, marginLeft: 5, marginTop: 18 }}>by Mozzy</span></div>
                 <div style={{ backgroundColor: "black", height: 2, width: 1180, alignSelf: "center" }} />
 
                 <div style={{ display: "flex", fontWeight: 700, marginTop: 10 }}>In {baseStats.totalGuilds.toLocaleString("en")} servers, with {baseStats.totalMembers.toLocaleString("en")} members, and {baseStats.totalStatsSent.total.toLocaleString("en")} stats sent.</div>
@@ -75,11 +70,6 @@ export default async () => {
                     name: "Inter",
                     data: boldFontData,
                     weight: 700
-                },
-                {
-                    name: "Inter",
-                    data: blackFontData,
-                    weight: 900
                 }
             ]
         }
